@@ -209,6 +209,155 @@ In the following sections, each of these modules will be examined and explained 
 
 
 
+>This section of the code corresponds to the initial configuration required for the filter functions. As shown, by assigning the appropriate value to the variable FILTER_M, the filter type can be switched between IIR and FIR. The primary role of these functions is to receive the address of the first element of the filter coefficient array and prepare them for use in the signal processing workflow.<
+```c
+  // Filter initialization
+  #if FILTER_M == FIR_METHOD
+  	  arm_fir_init_f32(&S, FIR_TAP_NUM, (float32_t *)firCoeffs, firState, BLOCK_SIZE);
+  #else
+  	  arm_biquad_cascade_df2T_init_f32(&IIR, NUM_STAGES, (float32_t *)biquadCoeffs, (float32_t *)biquadState);
+  #endif
+```
+
+
+>In this section, the functions related to WAV file handling are used to open the file Recording_8.wav, thereby enabling access to the data contained within it.<
+```c
+        sd_mount();
+        // Open recording file
+        ResultWave = WAVFIL_Start_Read( "Recording_8.wav");
+        if(ResultWave != WAV_OK){
+          break;
+          FlagKey = false;
+        }
+```
+
+
+
+>In this section, depending on the selected filter type, a new .wav file is created to store the data after the final processing is completed.<
+```c
+          // Create a new wave file
+          #if FILTER_M == FIR_METHOD
+                  ResultWave = WAVFIL_Start_Write("LPF_FIR.wav", R_WavremainData, 22050);
+                if(ResultWave != WAV_OK){
+                        break;
+                        FlagKey = false;
+                }
+          #else
+                  ResultWave = WAVFIL_Start_Write("LPF_IIR.wav", R_WavremainData, 22050);
+                if(ResultWave != WAV_OK){
+                        break;
+                        FlagKey = false;
+                }
+          #endif
+```
+
+
+>In this section, a frame consisting of 1024 16-bit samples is read from the SD card to perform the processing operations.<
+```c
+          // Give data from wave file in the sd card
+          WAVFIL_Catch_Data(wav_in, &NumByteRead);
+          if(ResultWave != WAV_OK){
+                  break;
+                  FlagKey = false;
+          }
+```
+
+
+>The purpose of the MAT_Connect function is to transmit the required information to the MATLAB environment and prepare it for receiving the signal samples.<
+```c
+          // Trying to connect to MATLAB on the PC
+          ResultMat = MAT_Connect(22050, 32767, NumByteRead);
+          if(ResultMat != MAT_OK){
+                  break;
+                  FlagKey = false;
+          }
+```
+
+>In this section, the selected filter is optionally applied to the data prepared for processing, and the resulting output is stored in the wav_out array.<
+```c
+          // Apply Low Pass Filter
+          #if FILTER_M == FIR_METHOD
+                  arm_fir_f32(&S, wav_in, wav_out, NumByteRead);
+          #else
+                  arm_biquad_cascade_df2T_f32(&IIR, wav_in, wav_out, BLOCK_SIZE);
+          #endif
+```
+
+>In this section, the processed data stored in the wav_out array is written to a new WAV file for storage on the SD card.<
+```c
+          // Storing Filtered data in the sd card
+          ResultWave = WAVFIL_Give_Write(wav_out);
+          if(ResultWave != WAV_OK){
+                  break;
+                  FlagKey = false;
+          }
+```
+
+
+>In this section, the MAT_SendSamples function transmits the data contained in the wav_out array to the MATLAB environment via the USB protocol.<
+```c
+          // Send Filtered data to MATLAB
+          ResultMat = MAT_SendSamples(wav_out, NumByteRead, 32767.5f);
+          if(ResultMat != MAT_OK){
+                  break;
+                  FlagKey = false;
+          }
+```
+
+
+>Initially, these steps are executed once to obtain the necessary information, such as the remaining data to be processed (R_WavremainData) and other related values. Subsequently, the process is repeated in a loop until R_WavremainData reaches zero, indicating that there are no more samples to read and that the processing is complete.<
+```c
+          // We need to continue this until the end of the wavw recording file.
+          while(R_WavremainData != 0){
+
+                  // Give data from wave file in the sd card
+                  ResultWave = WAVFIL_Catch_Data(wav_in, &NumByteRead);
+                  if(ResultWave != WAV_OK){
+                          break;
+                          FlagKey = false;
+                  }
+
+                  // Apply Low Pass Filter
+                  #if FILTER_M == FIR_METHOD
+                          arm_fir_f32(&S, wav_in, wav_out, NumByteRead);
+                  #else
+                          arm_biquad_cascade_df2T_f32(&IIR, wav_in, wav_out, BLOCK_SIZE);
+                  #endif
+
+                  // Send Filtered data to MATLAB
+                  ResultMat = MAT_SendSamples(wav_out, NumByteRead, 32767.5f);
+                  if(ResultMat != MAT_OK){
+                          break;
+                          FlagKey = false;
+                  }
+
+                  // Storing Filtered data in the sd card
+                  ResultWave = WAVFIL_Give_Write(wav_out);
+                  if(ResultWave != WAV_OK){
+                          break;
+                          FlagKey = false;
+                  }
+          }
+```
+
+
+>At this stage, all files opened on the SD card are closed, and a command is sent to MATLAB to indicate that the signal data has been fully processed, allowing MATLAB to perform the final analysis and evaluation.<
+```c
+          // Send to MATLAB end signal.
+          MAT_EndSignal();
+          // Close the wave recording file.
+          ResultWave = WAVFIL_End_Read();
+          // Close the new wave filtered file.
+          ResultWave = WAVFIL_End_Write();
+```
+
+
+
+
+
+
+
+
 
 
 
