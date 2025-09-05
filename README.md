@@ -205,7 +205,7 @@ CMSIS-DSP: Performs digital signal processing operations and applies the designe
 WAVE File: Manages data read and write operations on the SD card and performs the necessary conversions to ensure data format compatibility.
 MATLAB Interface: Transfers the output signals from the STM32 microcontroller to the MATLAB environment for analysis, evaluation, and validation of the results.
 In the following sections, each of these modules will be examined and explained in greater detail.
-
+![C Badge](https://img.shields.io/badge/language-C-blue)
 
 
 
@@ -351,8 +351,11 @@ In the following sections, each of these modules will be examined and explained 
           ResultWave = WAVFIL_End_Write();
 ```
 
+<br></br>
 
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d888b14b-c9d4-4dc3-9f25-48a39429047e" width="500"/>
+</p>
 
 
 
