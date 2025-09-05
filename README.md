@@ -12,7 +12,7 @@ Another important point is that, for filter implementation, it is preferable to 
 
 I will provide a set of explanations regarding the code of this program, which will contribute to a better understanding of the project.
 
-In this project, the implementation of the low-pass filter is carried out using two methods: FIR and IIR. By defining FILTER_M, the desired method can be selected and applied.
+>In this project, the implementation of the low-pass filter is carried out using two methods: FIR and IIR. By defining FILTER_M, the desired method can be selected and applied.
 ```c
 // Select Low Pass Filter with FIR OR IIR
 #define FIR_METHOD		1
@@ -22,6 +22,7 @@ In this project, the implementation of the low-pass filter is carried out using 
 ```
 
 
+>The implementation of FIR and IIR methods requires the corresponding filter coefficients. In this project, the FIR low-pass filter coefficients are generated using the script Generate_FIR_LPF_Coeff.m, while the IIR low-pass filter coefficients are produced using Generate_IIR_LPF_Coeff.m. Both scripts are executable in MATLAB and provide the necessary coefficient values for implementing the filters on the microcontroller.
 ```c
 #include <stdio.h>
 int main() {
@@ -30,7 +31,7 @@ int main() {
 }
 ```
 
-> این کد یک برنامه ساده به زبان C است که روی STM32 اجرا می‌شود:
+>>> این کد یک برنامه ساده به زبان C است که روی STM32 اجرا می‌شود:
 ```c
 #include <stdio.h>
 int main() {
