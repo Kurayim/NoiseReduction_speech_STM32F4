@@ -76,8 +76,8 @@ title('Frequency Response of FIR Low-pass Filter');
 grid on;
 
 ```
-
->>> این کد یک برنامه ساده به زبان C است که روی STM32 اجرا می‌شود:
+<br></br>
+>In the file Generate_IIR_LPF_Coeff.m, by correctly setting the parameters Fs, Fc, and order, and running the program in the MATLAB environment, the required IIR low-pass filter coefficients can be obtained from the program’s output.<
 ```c
 %% IIR Low-pass Butterworth Coefficients Printer (b,a + SOS + CMSIS)
 clc; clear;
