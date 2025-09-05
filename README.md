@@ -11,11 +11,11 @@ It is worth noting that the data in the WAVE file is stored as 8-bit values, and
 Another important point is that, for filter implementation, it is preferable to change the data format by normalizing the sample values to the range [-1, 1]. This improves processing accuracy and filter performance and is also applied within the project’s WAV functions.
 
 I will provide a set of explanations regarding the code of this program, which will contribute to a better understanding of the project.
+<br></br>
 
 
 
-
-In this project, the implementation of the low-pass filter is carried out using two methods: FIR and IIR. By defining FILTER_M, the desired method can be selected and applied.
+>In this project, the implementation of the low-pass filter is carried out using two methods: FIR and IIR. By defining FILTER_M, the desired method can be selected and applied.<
 ```c
 // Select Low Pass Filter with FIR OR IIR
 #define FIR_METHOD		1
