@@ -374,9 +374,8 @@ This figure illustrates the performance of the low-pass filter implemented using
 
 This figure depicts the effect of the low-pass filter implemented using the IIR method on the STM32 microcontroller. The filter’s cutoff frequency is set to 2 kHz, and frequencies above this value are attenuated or eliminated by the filter.
 <p align="center">
-   <img width="1915" height="662" alt="Screenshot 2025-09-05 130248" src="https://github.com/user-attachments/assets/25b0efb5-83bb-4460-b607-a38aa4953677" />
+   <img width="1918" height="643" alt="Screenshot 2025-09-05 131030" src="https://github.com/user-attachments/assets/c5c851d9-1fee-4592-85db-b8da2c6acee6" />
 </p>
-
 
 Although the results obtained from these filters indicate that their overall performance is correct, this does not imply complete noise removal from the original signal. Observations show that in certain critical speech-related frequencies, the original signal is also attenuated. Therefore, the outcome at this stage is not fully satisfactory in terms of the expected signal quality.
 
