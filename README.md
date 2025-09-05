@@ -21,3 +21,22 @@ int main() {
     printf("Hello, STM32!");
     return 0;
 }
+
+
+```c
+#include <stdio.h>
+int main() {
+    printf("Hello, STM32!\n");
+    return 0;
+}
+
+
+> این کد یک برنامه ساده به زبان C است که روی STM32 اجرا می‌شود:
+```c
+#include <stdio.h>
+int main() {
+    printf("Hello, STM32!\n");
+    return 0;
+}
+
+![C Badge](https://img.shields.io/badge/language-C-blue)
