@@ -198,8 +198,13 @@ const float32_t biquadCoeffs[NUM_STAGES * 5] = {
     +1.000000000000000f, +2.000000000000000f, +1.000000000000000f, +1.477569487213168f, -0.754930904616197f
 };
 ```
+<br></br>
 
-
+In the main.c file, which contains the core implementation of the program, a set of modules and functions are utilized, including CMSIS-DSP, WAVE File, and MATLAB Interface. Their roles are defined as follows:
+CMSIS-DSP: Performs digital signal processing operations and applies the designed filters.
+WAVE File: Manages data read and write operations on the SD card and performs the necessary conversions to ensure data format compatibility.
+MATLAB Interface: Transfers the output signals from the STM32 microcontroller to the MATLAB environment for analysis, evaluation, and validation of the results.
+In the following sections, each of these modules will be examined and explained in greater detail.
 
 
 
