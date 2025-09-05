@@ -12,7 +12,7 @@ Another important point is that, for filter implementation, it is preferable to 
 
 I will provide a set of explanations regarding the code of this program, which will contribute to a better understanding of the project.
 
-<br></br>
+
 
 
 In this project, the implementation of the low-pass filter is carried out using two methods: FIR and IIR. By defining FILTER_M, the desired method can be selected and applied.
