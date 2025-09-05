@@ -32,7 +32,7 @@ The implementation of FIR and IIR methods requires the corresponding filter coef
 
     
 
-
+##Generat_FIR_LPF_Coeff
 This program is designed for generating FIR filter coefficients. By appropriately setting the parameters Fs (sampling frequency), Fc (cutoff frequency), N (number of taps), and windowType (type of window), and, if necessary, beta (for the Kaiser window), the required filter coefficients can be obtained from the program’s output.
 ```c
 %% FIR Low-pass Filter Coefficient Generator
