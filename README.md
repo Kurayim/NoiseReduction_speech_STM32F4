@@ -353,9 +353,14 @@ In the following sections, each of these modules will be examined and explained 
 
 <br></br>
 
+
+This figure shows the original (raw) audio signal, which contains environmental noise. As observed in the spectrogram, different frequencies are present in the signal with varying energy levels.
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/d888b14b-c9d4-4dc3-9f25-48a39429047e" width="500"/>
+  <img src="https://github.com/user-attachments/assets/ffe62523-c344-4b00-92df-7a6f7fef3eeb" width="1200"/>
 </p>
+
+<br></br>
+
 
 
 
