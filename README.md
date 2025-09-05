@@ -24,16 +24,18 @@ I will provide a set of explanations regarding the code of this program, which w
 }
 ```
 
-
+<br></br>
+<br></br>
         
 The implementation of FIR and IIR methods requires the corresponding filter coefficients. In this project, the FIR low-pass filter coefficients are generated using the script Generate_FIR_LPF_Coeff.m, while the IIR low-pass filter coefficients are produced using Generate_IIR_LPF_Coeff.m. Both scripts are executable in MATLAB and provide the necessary coefficient values for implementing the filters on the microcontroller.
 
 
 
     
+<br></br>
+<br></br>
 
-#Generat_FIR_LPF_Coeff
-This program is designed for generating FIR filter coefficients. By appropriately setting the parameters Fs (sampling frequency), Fc (cutoff frequency), N (number of taps), and windowType (type of window), and, if necessary, beta (for the Kaiser window), the required filter coefficients can be obtained from the program’s output.
+>This program is designed for generating FIR filter coefficients. By appropriately setting the parameters Fs (sampling frequency), Fc (cutoff frequency), N (number of taps), and windowType (type of window), and, if necessary, beta (for the Kaiser window), the required filter coefficients can be obtained from the program’s output.<
 ```c
 %% FIR Low-pass Filter Coefficient Generator
 clc; clear;
